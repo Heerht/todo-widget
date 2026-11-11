@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App 界面 -->
+    <color name="accent">#4C6FFF</color>
+    <color name="accent_dark">#3B58D8</color>
+    <color name="on_accent">#FFFFFF</color>
+    <color name="app_bg">#F6F7FB</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="card_stroke">#E8EAF2</color>
+    <color name="text_primary">#16181D</color>
+    <color name="text_secondary">#7A8091</color>
+    <color name="divider">#EDEFF5</color>
+
+    <!-- 小部件（RemoteViews 里只能用具体颜色，不能用主题属性） -->
+    <color name="widget_bg">#FFFFFF</color>
+    <color name="widget_stroke">#E3E6EF</color>
+    <color name="widget_text_primary">#16181D</color>
+    <color name="widget_text_secondary">#8A90A0</color>
+    <color name="widget_text_done">#AEB3C0</color>
+    <color name="widget_icon">#7A8091</color>
+    <color name="widget_icon_pressed">#144C6FFF</color>
+    <color name="widget_item_pressed">#0D4C6FFF</color>
+    <color name="widget_progress_track">#EDEFF5</color>
+
+    <color name="ic_launcher_background">#4C6FFF</color>
+</resources>

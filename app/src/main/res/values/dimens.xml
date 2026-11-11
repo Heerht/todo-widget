@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12 起桌面小部件会按系统圆角裁切，这里给个接近的默认值 -->
+    <dimen name="widget_corner_radius">20dp</dimen>
+</resources>

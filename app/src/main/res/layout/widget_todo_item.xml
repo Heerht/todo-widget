@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 小部件列表中的单条待办。点击它 = 切换完成状态 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_widget_item"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:minHeight="34dp"
+    android:orientation="horizontal"
+    android:paddingEnd="4dp">
+
+    <ImageView
+        android:id="@+id/item_check"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:contentDescription="@string/action_toggle"
+        android:src="@drawable/ic_circle_outline" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/widget_text_primary"
+        android:textSize="13sp" />
+
+</LinearLayout>

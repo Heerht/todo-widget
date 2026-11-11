@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TodoWidget">
+
+        <!-- 主界面：管理待办 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 小部件里的“+”弹出的快速添加窗口，不需要出现在最近任务里 -->
+        <activity
+            android:name=".QuickAddActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/Theme.TodoWidget.Dialog" />
+
+        <!--
+            小部件本体。
+            1) 必须有 APPWIDGET_UPDATE 的 intent-filter，并且 exported=true（API 31+ 强制要求显式声明）；
+            2) 必须通过 meta-data 指向 appwidget-provider 的 XML 配置。
+            这两点是“小部件依附于 App”的核心：安装本 APK 之后，系统桌面才会在部件列表里看到它。
+        -->
+        <receiver
+            android:name=".widget.TodoWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/todo_widget_info" />
+        </receiver>
+
+        <!-- 集合型小部件（可滚动列表）的数据源，必须由 BIND_REMOTEVIEWS 权限保护 -->
+        <service
+            android:name=".widget.TodoWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
+
+</manifest>

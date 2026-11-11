@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 深色模式下状态栏图标要改成浅色 -->
+    <style name="Theme.TodoWidget" parent="Theme.TodoWidget.Base">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
