@@ -1,0 +1,58 @@
+name: build-apk
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-34 build-tools;34.0.0 platform-tools'
+
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Show output
+        run: ls -lh app/build/outputs/apk/debug/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: todo-widget-debug
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Publish to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: 最新构建（debug 签名）
+          body: |
+            由 GitHub Actions 自动构建，可直接安装到安卓手机。
+            每次 push 到 main 会覆盖这个 release 的附件。
+          files: app/build/outputs/apk/debug/*.apk
+          overwrite_files: true
+          prerelease: true
